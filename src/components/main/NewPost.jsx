@@ -31,9 +31,9 @@ const formSchema = z.object({
     }),
 })
 
-export function NewPost({ setOpen}) {
+export function NewPost({ setOpen,session}) {
 
-    const session = useSession()
+   
     const [loading, setLoading] = useState(false)
     console.log(session);
 
@@ -58,7 +58,7 @@ export function NewPost({ setOpen}) {
                 body: JSON.stringify({
                     title: values.title,
                     content: values.description,
-                    userID: session?.data?.user?.id,
+                    userID: session?.user?.id,
                 }),
             })
             const { message } = await res.json()
@@ -75,7 +75,6 @@ export function NewPost({ setOpen}) {
             }
             setOpen(false)
             toast({
-                variant: "success",
                 title: "Suggestion created successfully.",
             })
 

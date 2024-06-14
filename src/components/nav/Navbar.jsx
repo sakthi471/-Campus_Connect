@@ -16,6 +16,7 @@ import LogoutBtn from '../main/LogoutBtn';
 import { auth } from '@/lib/auth';
 import Avathar from '../main/Avathar';
 import NewPostDialog from '../main/NewPostDialog';
+import { ThemeSwitch } from '../main/ThemeSwitch';
 
 const links = [
   { title: 'Home', path: '/' },
@@ -25,13 +26,12 @@ const links = [
 
 const Navbar = async () => {
   const session = await auth();
-  console.log(session);
 
   return (
-    <nav className=" sticky  bg-white top-0 z-10  flex w-full justify-between items-center py-2 px-20 border-b-[1px] border-gray-200 ">
+    <nav className=" sticky  bg-white top-0 z-10 dark:bg-[#09090b]  flex w-full justify-between items-center py-2 px-20 border-b-[1px] border-gray-200 ">
       <div className="flex items-center gap-3">
        
-        <h1 className="text-lg font-bold">Hub</h1>
+        <h1 className="text-xl font-bold text-orange-400 ">Hub</h1>
       </div>
       {/* <ul className="flex space-x-6">
         {links.map((link, index) => (
@@ -44,7 +44,8 @@ const Navbar = async () => {
       </ul> */}
 
       <div className=' flex gap-6 items-center '>
-        {session?.user ? <> <NewPostDialog/> <Avathar session={session} />  </> : <Link href="/login"> <Button size='sm'>Login</Button> </Link>}
+        <ThemeSwitch/>
+        {session?.user ? <> <NewPostDialog session={session}/> <Avathar session={session} />  </> : <Link href="/login"> <Button size='sm'>Login</Button> </Link>}
 
       </div>
     </nav>

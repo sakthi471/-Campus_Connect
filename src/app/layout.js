@@ -3,7 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/nav/Navbar";
 import Footer from "@/components/footer/Footer";
 import { Toaster } from "@/components/ui/toaster"
-import { AuthProvider } from "./AuthProvider";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -17,13 +17,19 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthProvider>
-          <div className=" w-full flex flex-col items-center ">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className=" w-full flex flex-col  items-center ">
             <Navbar />
             {children}
             <Toaster />
           </div>
-        </AuthProvider>
+
+        </ThemeProvider>
 
       </body>
     </html>

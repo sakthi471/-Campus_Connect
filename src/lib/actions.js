@@ -18,10 +18,13 @@ export const login = async (previousState, formDate) => {
     console.log(res);
     return { error: null }
   } catch (error) {
+    console.log(error.message);
     if (error.message == 'CredentialsSignin') {
       return { error: "invalid usernme& password" }
     }
+    
     throw error;
+
   }
 
 

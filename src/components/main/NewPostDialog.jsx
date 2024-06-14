@@ -13,7 +13,7 @@ import { Button } from '../ui/button';
 import { Plus } from 'lucide-react';
 import NewPost from './NewPost';
 
-const NewPostDialog = () => {
+const NewPostDialog = ({session}) => {
     const [open, setOpen] = useState(undefined) 
 
   return (
@@ -24,7 +24,7 @@ const NewPostDialog = () => {
       </Button>
     </DialogTrigger>
     <DialogContent className='p-10 max-w-xl'>
-      <NewPost setOpen={setOpen} />
+      <NewPost session={session} setOpen={setOpen} />
     </DialogContent>
   </Dialog>
   )

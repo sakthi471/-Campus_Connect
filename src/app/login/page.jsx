@@ -13,13 +13,13 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { useState } from "react"
-import { useToast } from "@/components/ui/use-toast"
+import { useEffect, useState } from "react"
 import { Loader2 } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { signIn, useSession } from "next-auth/react"
 import { login } from "@/lib/actions"
 import { useFormState } from "react-dom";
+import { toast } from "@/components/ui/use-toast"
 
 
 
@@ -36,12 +36,10 @@ const formSchema = z.object({
 })
 
 export function Loginpage() {
-    const [loading, setLoading] = useState(false)
-    const { toast } = useToast()
-    const router = useRouter()
+
     const [state, formAction] = useFormState(login, undefined);
 
-
+    console.log(state);
 
     const form = useForm({
         resolver: zodResolver(formSchema),
@@ -50,12 +48,16 @@ export function Loginpage() {
             password: "",
         },
     })
- 
+
+    
+
+
+
     return (
         <div className="w-[40%] p-10">
             <Form {...form}>
                 <h2 className="text-2xl font-bold my-3">Login into your Account</h2>
-                <form action={formAction} 
+                <form action={formAction}
                     className="space-y-8">
                     <FormField
                         control={form.control}
@@ -85,10 +87,10 @@ export function Loginpage() {
                             </FormItem>
                         )}
                     />
-                     {/* <p className=" text-center" >{state?.error}</p> */}
+                    <p className=" text-sm text-center" >{state?.error}</p>
 
-                    <Button disabled={loading} className='w-full' type="submit">
-                        {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : "Login Up"}
+                    <Button  className='w-full' type="submit">
+                        Login Up
                     </Button>
                 </form>
             </Form>

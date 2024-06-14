@@ -9,33 +9,90 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import { Heart } from 'lucide-react'
+import { Heart, Loader2 } from 'lucide-react'
 import { Button } from '../ui/button'
+import LikeHeart from './LikeHeart'
+import { useToast } from "@/components/ui/use-toast"
+import { ToastAction } from "@/components/ui/toast"
+import Link from 'next/link'
 
 
-const SuggestionDetail = () => {
-    console.log();
-    const [like,setLike]=useState(false)
-    const handleLike=()=>{
-        console.log("clicked");
-        setLike((like)=>!like);
 
+
+const SuggestionDetail = ({ suggestion, session }) => {
+    const { toast } = useToast()
+
+    const [loading, setLoading] = useState(false)
+    const [like, setLike] = useState(suggestion.likes)
+    const checkVote = () => {
+        if (suggestion.likedby.includes(session?.user.id)) {
+            return false
+        }
+        return true;
     }
-    
+    const [isEligibleForVote, setIsEligibleForVote] = useState(checkVote())
+
+    const handleVote = async () => {
+        try {
+            if(!session){
+                toast({
+                    // variant: "destructive",
+                    title: "Uh oh! Something went wrong.",
+                    description: " You need to login to vote for a suggestion.",
+                    action: <ToastAction altText="Try again"> <Link href={'/login'} >Login</Link> </ToastAction>,
+                  })
+                return;
+            }
+
+            setLoading(true)
+            const data = {
+                suggestionID: suggestion._id,
+                userID: session?.user.id
+            }
+
+            const res = await fetch('/api/suggestion/like', {
+                method: 'POST',
+                body: JSON.stringify(data),
+            })
+
+            const { message } = await res.json()
+            setLoading(false)
+            if (!res.ok) {
+                toast({
+                    variant: "destructive",
+                    title: "Uh oh! Something went wrong.",
+                    description: message,
+                    
+                })
+                return
+            }
+            setIsEligibleForVote(!isEligibleForVote)
+
+            setLike(like + 1)
+            toast({
+
+                title: message,
+            })
+        }
+        catch (error) {
+            console.log(error.message);
+        }
+    }
+
     return (
         <>
             <DialogHeader>
-                <DialogTitle> Limited Career Counseling Services</DialogTitle>
+                <DialogTitle> {suggestion.title}</DialogTitle>
                 <DialogDescription>
-                    The career counseling services provided by the college are insufficient. There are not enough advisors to meet the demand, and the guidance on internships and job placements needs to be more comprehensive. Expanding the career services department and organizing more career fairs could greatly help students in their job search.
+                    {suggestion.content}
                 </DialogDescription>
             </DialogHeader>
             <DialogFooter className=" items-center" >
-                    <Button size="sm" >Vote For This</Button>
-                    <div onClick={handleLike} className='flex  gap-2 '>
-                        <small>11</small>
-                    <Heart size={22} className='hover:cursor-pointer' color='red' fill={`${like ? 'red':'none' }`}  strokeWidth={2} />
-                        </div>                
+                <Button type='submit' disabled={!isEligibleForVote} size="sm" onClick={handleVote} >{loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : isEligibleForVote ? 'Vote For This' : 'Already Voted'}</Button>
+                <div className='flex  gap-2 items-center '>
+                    <small>{like}</small>
+                    <LikeHeart isEligibleForVote={isEligibleForVote} />
+                </div>
             </DialogFooter>
 
         </>
