@@ -14,7 +14,7 @@ import { rootURL } from '@/utils/rootURL'
 
 const getSuggestions = async () => {
     try {
-        const res = await fetch(`${rootURL}/api/suggestion`, { cache: 'no-store' })
+        const res = await fetch(`${process.env.ROOT_URL}/api/suggestion`, { cache: 'no-store' })
         const suggestions = await res.json()
         return suggestions
     } catch (error) {
