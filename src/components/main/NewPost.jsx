@@ -50,7 +50,7 @@ export function NewPost({ setOpen,session}) {
 
         try {
             setLoading(true);
-            const res = await fetch(`http://localhost:3000/api/suggestion`, {
+            const res = await fetch(`/api/suggestion`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
