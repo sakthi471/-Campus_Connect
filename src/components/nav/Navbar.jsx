@@ -31,7 +31,7 @@ const Navbar = async () => {
     <nav className=" sticky  bg-white top-0 z-10 dark:bg-[#09090b]  flex w-full justify-between items-center py-2 px-20 border-b-[1px] border-gray-200 ">
       <div className="flex items-center gap-3">
        
-        <h1 className="text-xl font-bold text-orange-400 ">Hub</h1>
+        <Link href={'/'}><h1 className="text-xl font-bold text-orange-400 ">Hub</h1></Link>
       </div>
       {/* <ul className="flex space-x-6">
         {links.map((link, index) => (

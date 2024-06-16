@@ -38,7 +38,7 @@ const Suggestions = async () => {
                                 <DialogTrigger   >
                                     <SuggestionCard key={suggestion._id} suggestion={suggestion} />
                                 </DialogTrigger>
-                                <DialogContent >
+                                <DialogContent className='max-w-[60%]' >
                                     <SuggestionDetail session={session} suggestion={suggestion} />
                                 </DialogContent>
                             </Dialog>

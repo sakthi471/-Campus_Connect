@@ -18,6 +18,7 @@ import { useToast } from "@/components/ui/use-toast"
 import { Loader2 } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useSession } from "next-auth/react"
+import Link from "next/link"
 const { uniqueNamesGenerator, adjectives, names } = require('unique-names-generator');
 
 const generateUsername = () => {
@@ -119,6 +120,9 @@ export function RegisterPage() {
                             </FormItem>
                         )}
                     />
+                     <div>
+                        <p className=" text-sm" >Already  have an account click <Link className=" text-blue-600 underline" href={'/register'} >here</Link> to login</p>
+                    </div>
                     <Button disabled={loading} className='w-full' type="submit">
                         {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : "Sign Up"}
                     </Button>

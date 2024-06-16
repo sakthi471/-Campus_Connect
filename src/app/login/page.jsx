@@ -20,6 +20,7 @@ import { signIn, useSession } from "next-auth/react"
 import { login } from "@/lib/actions"
 import { useFormState } from "react-dom";
 import { toast } from "@/components/ui/use-toast"
+import Link from "next/link"
 
 
 
@@ -49,7 +50,7 @@ export function Loginpage() {
         },
     })
 
-    
+
 
 
 
@@ -87,11 +88,13 @@ export function Loginpage() {
                             </FormItem>
                         )}
                     />
-                    <p className=" text-sm text-center" >{state?.error}</p>
-
-                    <Button  className='w-full' type="submit">
+                    <div>
+                        <p className=" text-sm" >Don&apos;t have an account click <Link className=" text-blue-600 underline" href={'/register'} >here</Link> to register</p>
+                    </div>
+                    <Button className='w-full' type="submit">
                         Login Up
                     </Button>
+                        <p className=" text-sm text-center" >{state?.error}</p>
                 </form>
             </Form>
         </div>
