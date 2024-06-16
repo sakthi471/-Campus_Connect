@@ -7,12 +7,14 @@ import {
 } from "@/components/ui/dialog"
 import SuggestionDetail from './SuggestionDetail'
 import { auth } from '@/lib/auth'
+import { rootURL } from '@/utils/rootURL'
+
 
 
 
 const getSuggestions = async () => {
     try {
-        const res = await fetch(`http://localhost:3000/api/suggestion`, { cache: 'no-store' })
+        const res = await fetch(`${rootURL}/api/suggestion`, { cache: 'no-store' })
         const suggestions = await res.json()
         return suggestions
     } catch (error) {
