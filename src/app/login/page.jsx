@@ -55,7 +55,7 @@ export function Loginpage() {
 
 
     return (
-        <div className="w-[40%] p-10">
+        <div className="w-[40%]  p-10">
             <Form {...form}>
                 <h2 className="text-2xl font-bold my-3">Login into your Account</h2>
                 <form action={formAction}
@@ -89,7 +89,7 @@ export function Loginpage() {
                         )}
                     />
                     <div>
-                        <p className=" text-sm" >Don&apos;t have an account click <Link className=" text-blue-600 underline" href={'/register'} >here</Link> to register</p>
+                        <p className=" text-sm" >Don&apos;t have an account click <Link className=" text-blue-600 underline" href={'/register'} >Here</Link> to register</p>
                     </div>
                     <Button className='w-full' type="submit">
                         Login Up

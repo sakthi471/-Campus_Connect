@@ -26,12 +26,12 @@ const links = [
 
 const Navbar = async () => {
   const session = await auth();
-
+ 
   return (
-    <nav className=" sticky  bg-white top-0 z-10 dark:bg-[#09090b]  flex w-full justify-between items-center py-2 px-20 border-b-[1px] border-gray-200 ">
+    <nav className=" w-full bg-purple-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10  sticky   top-0 z-10   shadow-md  flex justify-between items-center py-3 px-20   ">
       <div className="flex items-center gap-3">
        
-        <Link href={'/'}><h1 className="text-xl font-bold text-orange-400 ">Hub</h1></Link>
+        <Link href={'/'}><h1 className="text-xl font-bold ">Campus <span className='text-primary'>Connect</span> </h1></Link>
       </div>
       {/* <ul className="flex space-x-6">
         {links.map((link, index) => (

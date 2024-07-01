@@ -36,7 +36,7 @@ const SuggestionDetail = ({ suggestion, session }) => {
         try {
             if(!session){
                 toast({
-                    // variant: "destructive",
+                    
                     title: "Uh oh! Something went wrong.",
                     description: " You need to login to vote for a suggestion.",
                     action: <ToastAction altText="Try again"> <Link href={'/login'} >Login</Link> </ToastAction>,
@@ -82,15 +82,15 @@ const SuggestionDetail = ({ suggestion, session }) => {
     return (
         <>
             <DialogHeader>
-                <DialogTitle> {suggestion.title}</DialogTitle>
-                <DialogDescription>
+                <DialogTitle className='py-2 text-xl'> {suggestion.title}</DialogTitle>
+                <DialogDescription className='text-lg'>
                     {suggestion.content}
                 </DialogDescription>
             </DialogHeader>
             <DialogFooter className=" items-center" >
-                <Button type='submit' disabled={!isEligibleForVote} size="sm" onClick={handleVote} >{loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : isEligibleForVote ? 'Vote For This' : 'Already Voted'}</Button>
+                <Button type='submit'  disabled={!isEligibleForVote} onClick={handleVote} >{loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : isEligibleForVote ? 'Vote For This' : 'Already Voted'}</Button>
                 <div className='flex  gap-2 items-center '>
-                    <small>{like}</small>
+                    <p >{like}</p>
                     <LikeHeart isEligibleForVote={isEligibleForVote} />
                 </div>
             </DialogFooter>

@@ -121,7 +121,7 @@ export function RegisterPage() {
                         )}
                     />
                      <div>
-                        <p className=" text-sm" >Already  have an account click <Link className=" text-blue-600 underline" href={'/register'} >here</Link> to login</p>
+                        <p className=" text-sm" >Already  have an account click <Link className=" text-blue-600 underline" href={'/register'} >Here</Link> to login</p>
                     </div>
                     <Button disabled={loading} className='w-full' type="submit">
                         {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : "Sign Up"}

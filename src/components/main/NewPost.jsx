@@ -99,7 +99,7 @@ export function NewPost({ setOpen,session}) {
                         <FormItem>
                             <FormLabel>Tittle</FormLabel>
                             <FormControl>
-                                <Input placeholder="Tittle about your suggestion." {...field} />
+                                <Input placeholder="Tittle about your suggestion / idea / problem." {...field} />
                             </FormControl>
 
                             <FormMessage />
@@ -114,7 +114,7 @@ export function NewPost({ setOpen,session}) {
                             <FormLabel> Description </FormLabel>
                             <FormControl>
                                 <Textarea
-                                    placeholder="Describe about your suggestion."
+                                    placeholder="Describe about your suggestion / idea / problem."
 
                                     {...field}
                                 />
