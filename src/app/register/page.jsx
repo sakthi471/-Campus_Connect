@@ -99,7 +99,7 @@ export function RegisterPage() {
                                 <FormLabel>Username</FormLabel>
                                 <FormControl>
                                     <div className="flex items-center">
-                                        <Input  placeholder="Username" {...field} />
+                                        <Input readOnly={true}   placeholder="Username" {...field} />
                                         <Button type="button" onClick={handleGenerateUsername} className="ml-2">Generate</Button>
                                     </div>
                                 </FormControl>
